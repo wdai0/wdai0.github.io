@@ -1,7 +1,18 @@
 # My personal webpage
 
 # 📊 GitHub Stats:
-![](https://github-readme-stats.vercel.app/api/top-langs/?username=wdai0&theme=default&hide_border=true&include_all_commits=false&count_private=false&layout=compact)
+<p align="left">wdai AT gmu DOT edu</p>
 
----
-[![](https://visitcount.itsvg.in/api?id=wdai0&icon=0&color=1)](https://visitcount.itsvg.in)
+###
+
+<div align="center">
+  <img src="https://github-readme-stats.vercel.app/api/top-langs?username=wdai0&locale=en&hide_title=false&layout=compact&card_width=320&langs_count=6&theme=dracula&hide_border=false&order=2" height="150" alt="languages graph"  />
+</div>
+
+###
+
+<div align="center">
+  <img src="https://profile-counter.glitch.me/wdai0/count.svg?"  />
+</div>
+
+###
