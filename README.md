@@ -1,8 +1,7 @@
 # My personal webpage
-
-# 📊 GitHub Stats:
 <p align="left">wdai AT gmu DOT edu</p>
 
+# 📊 GitHub Stats:
 ###
 
 <div align="center">
