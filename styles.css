@@ -18,6 +18,9 @@ header h1 {
     text-align: center;
     margin: 0;
     font-size: 2.5em; /* Increased font size for header */
+    background: rgb(30, 98, 56); /* Updated decoration color */
+    color: rgb(226, 168, 43); /* Updated font color for contrast */
+    padding: 20px 0; /* Increased padding for a larger look */
 }
 
 header nav {
@@ -48,6 +51,17 @@ main {
 
 section {
     margin-bottom: 20px;
+}
+
+html, body {
+    height: 100%; /* Make sure html and body are full height */
+    margin: 0;
+    display: flex;
+    flex-direction: column; /* Makes the main content flex in a column */
+}
+
+body > main {
+    flex-grow: 1; /* Allows the main content to grow and push the footer down */
 }
 
 footer {
