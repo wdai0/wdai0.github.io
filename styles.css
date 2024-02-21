@@ -3,17 +3,21 @@ body {
     margin: 0;
     padding: 0;
     line-height: 1.6;
+    background: #fff; /* Keeps main background color white */
+    color: #000; /* Ensures main text is black */
+    font-size: 26px; /* Increase base font size */
 }
 
 header {
-    background: #333;
-    color: #fff;
-    padding: 10px 0;
+    background: rgb(30, 98, 56); /* Updated decoration color */
+    color: rgb(226, 168, 43); /* Updated font color for contrast */
+    padding: 20px 0; /* Increased padding for a larger look */
 }
 
 header h1 {
     text-align: center;
     margin: 0;
+    font-size: 2.5em; /* Increased font size for header */
 }
 
 header nav {
@@ -28,17 +32,18 @@ header nav ul {
 
 header nav ul li {
     display: inline;
-    margin: 0 10px;
+    margin: 0 15px; /* Slightly increased spacing */
 }
 
 header nav ul li a {
-    color: #fff;
+    color: rgb(226, 168, 43); /* Ensures links are in contrast color */
     text-decoration: none;
+    font-size: 1.2em; /* Increased font size for navigation links */
 }
 
 main {
     padding: 20px;
-    background: #f2f2f2;
+    background: #f2f2f2; /* Keeps content area lighter for readability */
 }
 
 section {
@@ -46,8 +51,8 @@ section {
 }
 
 footer {
-    background: #333;
-    color: #fff;
+    background: rgb(30, 98, 56); /* Updated decoration color */
+    color: rgb(226, 168, 43); /* Updated font color for contrast */
     text-align: center;
-    padding: 10px 0;
+    padding: 20px 0; /* Increased padding for a larger look */
 }
