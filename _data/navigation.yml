@@ -1,8 +1,8 @@
-- name: Home
-  link: /
-- name: tips
-  link: /tips.html
-- name: Slides
-  link: /slides.html
-- name: Notes
-  link: /notes.html
+- title: Home
+  url: /
+- title: Blog
+  url: /blog/
+- title: Projects
+  url: /projects/
+- title: About
+  url: /about/

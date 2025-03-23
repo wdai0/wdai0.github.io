@@ -6,32 +6,29 @@
     <title>{{ page.title }} | {{ site.title }}</title>
     <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
-    <!-- MathJax Script -->
+    <!-- MathJax Configuration -->
     <script>
-      window.MathJax = {
-        tex: {
-          inlineMath: [['$', '$'], ['\\(', '\\)']], // Defines delimiters for inline math
-          displayMath: [['$$', '$$'], ['\\[', '\\]']] // Defines delimiters for display math
-        },
-        svg: {
-          fontCache: 'global'
-        },
-        startup: {
-          ready: () => {
-            console.log('MathJax is ready');
-            MathJax.startup.defaultReady();
-          }
-        }
-      };
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            }
+        };
     </script>
-    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
     <div class="container">
         <header class="site-header">
-            <nav>
+            <nav class="main-nav">
                 <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
+                <div class="nav-links">
+                    {% for item in site.data.navigation %}
+                    <a href="{{ item.url | relative_url }}" class="nav-link {% if page.url == item.url %}active{% endif %}">
+                        {{ item.title }}
+                    </a>
+                    {% endfor %}
+                </div>
             </nav>
         </header>
 
@@ -44,9 +41,8 @@
                 <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}</p>
                 <div class="social-links">
                     <a href="https://github.com/{{ site.author.github }}" target="_blank">GitHub</a>
-                    {% if site.author.email %}
-                    <a href="mailto:{{ site.author.email }}">Email</a>
-                    {% endif %}
+                    <a href="cv.pdf" class="contact-link">CV</a>
+                    <a href="mailto:{{ site.author.email }}" class="contact-link">Email</a>
                 </div>
             </div>
         </footer>
