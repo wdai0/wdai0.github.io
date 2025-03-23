@@ -1,0 +1,242 @@
+/* Base styles */
+:root {
+    --primary-color: #2c3e50;
+    --text-color: #333;
+    --background-color: #fff;
+    --accent-color: #3498db;
+    --spacing-unit: 1rem;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-unit);
+}
+
+/* Header styles */
+.site-header {
+    padding: calc(var(--spacing-unit) * 2) 0;
+    border-bottom: 1px solid #eee;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 1.5);
+}
+
+.nav-links a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+}
+
+/* Intro container styles */
+.intro-container {
+    display: flex;
+    gap: calc(var(--spacing-unit) * 4);
+    padding: calc(var(--spacing-unit) * 4) 0;
+    background-color: #f8f9fa;
+    margin: calc(var(--spacing-unit) * -3) 0 calc(var(--spacing-unit) * 3);
+}
+
+.hero, .about {
+    flex: 1;
+    padding: 0 var(--spacing-unit);
+}
+
+.hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: var(--spacing-unit);
+    color: var(--primary-color);
+}
+
+.subtitle {
+    font-size: 1.25rem;
+    color: #666;
+}
+
+.about {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.about h2 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-unit);
+    color: var(--primary-color);
+}
+
+.about p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+}
+
+/* Projects section */
+.project-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: calc(var(--spacing-unit) * 2);
+    margin-top: calc(var(--spacing-unit) * 2);
+}
+
+.project-card {
+    padding: calc(var(--spacing-unit) * 2);
+    border: 1px solid #eee;
+    border-radius: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-card h3 {
+    margin-bottom: var(--spacing-unit);
+    color: var(--primary-color);
+}
+
+.project-link {
+    display: inline-block;
+    margin-top: var(--spacing-unit);
+    font-weight: 500;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.project-link:hover {
+    text-decoration: underline;
+}
+
+/* Contact section */
+.contact {
+    text-align: center;
+    padding: calc(var(--spacing-unit) * 3) 0;
+    background-color: #f8f9fa;
+    margin: calc(var(--spacing-unit) * 3) -1rem -1rem;
+}
+
+.contact-links {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-unit);
+    margin-top: calc(var(--spacing-unit) * 2);
+    flex-wrap: wrap;
+}
+
+.contact-link {
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--accent-color);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    min-width: 100px;
+    text-align: center;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.contact-link:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+/* Footer styles */
+.site-footer {
+    padding: calc(var(--spacing-unit) * 2) 0;
+    border-top: 1px solid #eee;
+    margin-top: calc(var(--spacing-unit) * 3);
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.social-links {
+    display: flex;
+    gap: var(--spacing-unit);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .intro-container {
+        flex-direction: column;
+        gap: calc(var(--spacing-unit) * 2);
+        padding: calc(var(--spacing-unit) * 2) 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .about {
+        text-align: center;
+    }
+}
+
+@media (max-width: 600px) {
+    .nav-links {
+        gap: var(--spacing-unit);
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        gap: var(--spacing-unit);
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+    }
+
+    .contact-links {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .contact-link {
+        width: 200px;
+    }
+} 

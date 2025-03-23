@@ -3,27 +3,43 @@ layout: default
 title: Home
 ---
 
-<header>
-    <h1>Welcome to My Personal Website @gmu</h1>
-</header>
-
-<main>
-    <section id="cv">
-        <h2>My CV</h2>
-        <p><a href="cv.pdf">Click here to view my CV.</a></p>
+<div class="intro-container">
+    <section class="hero">
+        <h1>Wei Dai</h1>
+        <p class="subtitle">Statistician & Data Scientist</p>
     </section>
 
-    <section id="projects">
-        <h2>My Projects</h2>
-        <p><a href="https://github.com/wdai0">My GitHub page.</a></p>
+    <section class="about">
+        <h2>About Me</h2>
+        <p>New PhD graduate in Statistics (May 2025) with a research focus on feature selection and mixture models;
+        Experienced developer of R and Python packages. Demonstrated experience with several electronic health
+        records (EHR) data; Experienced in machine learning methods, and actively following developments in large
+        language models.</p>
     </section>
-    <section id="slides">
-        <h2>My Slides</h2>
-        <p><a href="slides.html">Slides list</a></p>
-    </section>
-</main>
+</div>
 
-<footer>
-    <p>© 2024 by Wei Dai</p>
-</footer>
+<section class="contact">
+    <h2>Get in Touch</h2>
+    <p>I'm actively looking for opportunities in statistics, data science and machine learning.</p>
+    <div class="contact-links">
+        <a href="cv-page.pdf" class="contact-link">CV</a>
+        <a href="https://github.com/{{ site.author.github }}" class="contact-link">GitHub</a>
+        <a href="mailto:dwei90bd@gmail.com" class="contact-link">Email</a>
+    </div>
+</section>
 
+<section class="projects">
+    <h2>Featured Projects</h2>
+    <div class="project-grid">
+        <div class="project-card">
+            <h3>subsampwinner</h3>
+            <p>A package for feature selection using Subsampling Winner Algorithm.</p>
+            <a href="https://github.com/wdai0/subsamp" class="project-link">View Project →</a>
+        </div>
+        <div class="project-card">
+            <h3>HTx-OSOL</h3>
+            <p>Supplemental details and code for HTx paper. (In progress)</p>
+            <a href="https://github.com/wdai0/HTx-supplement-open" class="project-link">View Project →</a>
+        </div>
+    </div>
+</section>

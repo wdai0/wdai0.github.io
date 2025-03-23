@@ -1,9 +1,11 @@
-<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>{{ page.title }}</title>
-    <link rel="stylesheet" href="/assets/css/styles.css">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }} | {{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
     <!-- MathJax Script -->
     <script>
       window.MathJax = {
@@ -24,9 +26,30 @@
     </script>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-  </head>
-  <body>
-    {% include navigation.html %}
-    {{ content }}
-  </body>
+</head>
+<body>
+    <div class="container">
+        <header class="site-header">
+            <nav>
+                <a href="{{ '/' | relative_url }}" class="logo">{{ site.title }}</a>
+            </nav>
+        </header>
+
+        <main class="content">
+            {{ content }}
+        </main>
+
+        <footer class="site-footer">
+            <div class="footer-content">
+                <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}</p>
+                <div class="social-links">
+                    <a href="https://github.com/{{ site.author.github }}" target="_blank">GitHub</a>
+                    {% if site.author.email %}
+                    <a href="mailto:{{ site.author.email }}">Email</a>
+                    {% endif %}
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
 </html>

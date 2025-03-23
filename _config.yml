@@ -1,5 +1,24 @@
+title: Wei Dai
+description: Personal website
+baseurl: ""
+url: "https://wdai0.github.io"
+
+# Build settings
 markdown: kramdown
 kramdown:
   input: GFM
 highlighter: rouge
-remote_theme: pages-themes/minimal@v0.2.0
+
+# Site author
+author:
+  name: Wei Dai
+  email: dwei90bd@gmail.com
+  github: wdai0
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor
+  - .git/
