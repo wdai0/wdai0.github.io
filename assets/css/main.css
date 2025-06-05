@@ -125,6 +125,31 @@ body {
     line-height: 1.8;
 }
 
+/* Skills section */
+.skills {
+    padding: calc(var(--spacing-unit) * 4) var(--spacing-unit);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.skills h2 {
+    font-size: 2rem;
+    margin-bottom: var(--spacing-unit);
+    color: var(--primary-color);
+}
+
+.skills-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.skills-img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+}
+
 /* Projects section */
 .project-grid {
     display: grid;
