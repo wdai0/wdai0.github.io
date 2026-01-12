@@ -15,6 +15,20 @@ author:
   email: dwei90bd@gmail.com
   github: wdai0
 
+# Collections
+collections:
+  projects:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: "_projects"
+      type: "projects"
+    values:
+      layout: "default"
+
 # Exclude from processing
 exclude:
   - Gemfile

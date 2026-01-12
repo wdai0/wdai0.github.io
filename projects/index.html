@@ -1,0 +1,48 @@
+---
+layout: default
+title: Projects
+---
+
+<section class="blog-header">
+    <h1>Projects</h1>
+    <p>Research projects, presentations, and slide collections</p>
+</section>
+
+<section class="blog-posts">
+    {% assign sorted_projects = site.projects | sort: 'date' | reverse %}
+    {% for project in sorted_projects %}
+    <article class="blog-post">
+        <h2>{{ project.title }}</h2>
+        <div class="post-meta">
+            {% if project.date %}
+            <time datetime="{{ project.date | date_to_xmlschema }}">{{ project.date | date: "%B %d, %Y" }}</time>
+            {% endif %}
+            {% if project.tags %}
+            <span class="categories">
+                {% for tag in project.tags %}
+                <span class="category">{{ tag }}</span>
+                {% endfor %}
+            </span>
+            {% endif %}
+        </div>
+        {% if project.description %}
+        <div class="post-excerpt">
+            <p>{{ project.description }}</p>
+        </div>
+        {% endif %}
+        <div class="project-links">
+            {% if project.slide_url %}
+            <a href="{{ project.slide_url }}" target="_blank" class="project-link">View Slides →</a>
+            {% endif %}
+            {% if project.github_url %}
+            <a href="{{ project.github_url }}" target="_blank" class="project-link">GitHub →</a>
+            {% endif %}
+        </div>
+        {% if project.content %}
+        <div class="project-content">
+            {{ project.content }}
+        </div>
+        {% endif %}
+    </article>
+    {% endfor %}
+</section>
