@@ -1,0 +1,43 @@
+---
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Wei Dai",
+  description = "Statistics, machine learning, and interactive explainers by Wei Dai."
+} = Astro.props;
+
+const pageTitle = title === "Wei Dai" ? title : `${title} | Wei Dai`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#f5efe3" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.toString()} />
+  </head>
+  <body>
+    <div class="page-shell">
+      <div class="page-shell__halo page-shell__halo--left"></div>
+      <div class="page-shell__halo page-shell__halo--right"></div>
+      <SiteHeader />
+      <main class="site-main">
+        <slot />
+      </main>
+      <SiteFooter />
+    </div>
+  </body>
+</html>

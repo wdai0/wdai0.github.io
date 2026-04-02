@@ -1,0 +1,79 @@
+<section class="demo-layout" id="kernel-playground">
+  <div class="demo-grid">
+    <form class="control-panel" aria-label="Kernel playground controls">
+      <div class="control-group">
+        <label for="kernel-type">Kernel</label>
+        <select id="kernel-type" name="kernel">
+          <option value="rbf">RBF</option>
+          <option value="matern32">Matern 3/2</option>
+          <option value="periodic">Periodic</option>
+          <option value="linear">Linear</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="variance">Variance</label>
+        <input id="variance" type="range" min="0.2" max="2.5" step="0.05" value="1.1" />
+        <output class="control-output" id="variance-output">1.10</output>
+      </div>
+
+      <div class="control-group">
+        <label for="length-scale">Length scale</label>
+        <input id="length-scale" type="range" min="0.15" max="2.5" step="0.05" value="0.9" />
+        <output class="control-output" id="length-scale-output">0.90</output>
+      </div>
+
+      <div class="control-group">
+        <label for="periodicity">Periodicity</label>
+        <input id="periodicity" type="range" min="0.4" max="4" step="0.1" value="1.6" />
+        <output class="control-output" id="periodicity-output">1.60</output>
+      </div>
+
+      <div class="control-group">
+        <label for="bias">Linear bias point</label>
+        <input id="bias" type="range" min="-1.5" max="1.5" step="0.1" value="0" />
+        <output class="control-output" id="bias-output">0.00</output>
+      </div>
+    </form>
+
+    <div class="plot-stack plot-stack--two">
+      <section class="plot-panel plot">
+        <h3>Prior sample paths</h3>
+        <p>Each line is a fresh draw from the prior induced by the selected kernel.</p>
+        <svg
+          id="kernel-sample-plot"
+          aria-labelledby="kernel-sample-title"
+          role="img"
+          viewBox="0 0 680 340"
+        >
+          <title id="kernel-sample-title">Sample paths from the selected Gaussian-process prior</title>
+        </svg>
+        <p class="demo-caption" id="kernel-sample-caption"></p>
+      </section>
+
+      <section class="plot-panel plot">
+        <h3>Covariance matrix</h3>
+        <p>The heatmap shows how strongly each pair of input locations co-varies under the kernel.</p>
+        <svg
+          id="kernel-covariance-plot"
+          aria-labelledby="kernel-covariance-title"
+          role="img"
+          viewBox="0 0 420 420"
+        >
+          <title id="kernel-covariance-title">Covariance matrix heatmap for the selected kernel</title>
+        </svg>
+        <p class="demo-caption" id="kernel-covariance-caption"></p>
+      </section>
+    </div>
+  </div>
+
+  <section class="note-panel" aria-live="polite">
+    <p id="kernel-summary"></p>
+  </section>
+
+  <script>
+    import initKernelPlayground from "../scripts/kernel-playground";
+
+    initKernelPlayground();
+  </script>
+</section>

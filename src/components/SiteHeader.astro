@@ -1,0 +1,43 @@
+---
+const pathname = Astro.url.pathname;
+
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/projects/", label: "Projects" },
+  { href: "/lab/", label: "Lab" },
+  { href: "/about/", label: "About" }
+];
+---
+
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__mark" href="/">
+      <span class="site-header__monogram">WD</span>
+      <span class="site-header__identity">
+        <span>Wei Dai</span>
+        <span>Statistics · ML · Scientific Computing</span>
+      </span>
+    </a>
+
+    <nav aria-label="Primary navigation">
+      <ul class="site-nav">
+        {
+          navItems.map((item) => {
+            const isActive =
+              item.href === "/"
+                ? pathname === item.href
+                : pathname.startsWith(item.href);
+
+            return (
+              <li>
+                <a class:list={["site-nav__link", { "is-active": isActive }]} href={item.href}>
+                  {item.label}
+                </a>
+              </li>
+            );
+          })
+        }
+      </ul>
+    </nav>
+  </div>
+</header>

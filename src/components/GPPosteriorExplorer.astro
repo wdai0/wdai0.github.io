@@ -1,0 +1,87 @@
+<section class="demo-layout" id="gp-posterior-explorer">
+  <div class="demo-grid">
+    <form class="control-panel" aria-label="Gaussian-process posterior controls">
+      <div class="control-group">
+        <label for="posterior-kernel">Kernel</label>
+        <select id="posterior-kernel" name="kernel">
+          <option value="rbf">RBF</option>
+          <option value="matern32">Matern 3/2</option>
+          <option value="periodic">Periodic</option>
+          <option value="linear">Linear</option>
+        </select>
+      </div>
+
+      <div class="control-group">
+        <label for="posterior-variance">Variance</label>
+        <input id="posterior-variance" type="range" min="0.2" max="2.5" step="0.05" value="1.1" />
+        <output class="control-output" id="posterior-variance-output">1.10</output>
+      </div>
+
+      <div class="control-group">
+        <label for="posterior-length-scale">Length scale</label>
+        <input
+          id="posterior-length-scale"
+          type="range"
+          min="0.15"
+          max="2.5"
+          step="0.05"
+          value="0.8"
+        />
+        <output class="control-output" id="posterior-length-scale-output">0.80</output>
+      </div>
+
+      <div class="control-group">
+        <label for="posterior-periodicity">Periodicity</label>
+        <input
+          id="posterior-periodicity"
+          type="range"
+          min="0.4"
+          max="4"
+          step="0.1"
+          value="1.8"
+        />
+        <output class="control-output" id="posterior-periodicity-output">1.80</output>
+      </div>
+
+      <div class="control-group">
+        <label for="posterior-bias">Linear bias point</label>
+        <input id="posterior-bias" type="range" min="-1.5" max="1.5" step="0.1" value="0" />
+        <output class="control-output" id="posterior-bias-output">0.00</output>
+      </div>
+
+      <div class="control-group">
+        <label for="posterior-noise">Observation noise</label>
+        <input id="posterior-noise" type="range" min="0.02" max="0.8" step="0.02" value="0.12" />
+        <output class="control-output" id="posterior-noise-output">0.12</output>
+      </div>
+
+      <div class="button-row">
+        <button class="button button--ghost" id="load-smooth" type="button">Load smooth</button>
+        <button class="button button--ghost" id="load-periodic" type="button">Load periodic</button>
+        <button class="button button--ghost" id="clear-points" type="button">Clear points</button>
+      </div>
+    </form>
+
+    <div class="plot-stack">
+      <section class="plot-panel plot">
+        <h3>Posterior mean and uncertainty</h3>
+        <p>Click anywhere on the chart to add an observation. The band shows the central two-sigma interval.</p>
+        <svg id="posterior-plot" aria-labelledby="posterior-plot-title" role="img" viewBox="0 0 720 360">
+          <title id="posterior-plot-title">
+            Gaussian-process posterior plot with uncertainty band and observed points
+          </title>
+        </svg>
+      </section>
+
+      <section class="note-panel" aria-live="polite">
+        <p id="posterior-summary"></p>
+      </section>
+    </div>
+  </div>
+
+  <script>
+    import initPosteriorExplorer from "../scripts/gp-posterior";
+
+    initPosteriorExplorer();
+  </script>
+</section>

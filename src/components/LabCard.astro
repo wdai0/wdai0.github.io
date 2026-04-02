@@ -1,0 +1,19 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  summary: string;
+  motivation: string;
+}
+
+const { href, title, summary, motivation } = Astro.props;
+---
+
+<article class="card card--lab">
+  <p class="card__kicker">Interactive explainer</p>
+  <h3 class="card__title">
+    <a href={href}>{title}</a>
+  </h3>
+  <p class="card__summary">{summary}</p>
+  <p class="card__detail">{motivation}</p>
+</article>

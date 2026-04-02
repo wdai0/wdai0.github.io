@@ -1,0 +1,162 @@
+---
+import { getCollection } from "astro:content";
+import ContactBand from "../components/ContactBand.astro";
+import FigureBlock from "../components/FigureBlock.astro";
+import LabCard from "../components/LabCard.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const featuredProjects = (await getCollection("projects"))
+  .filter((entry) => entry.data.featured)
+  .sort((left, right) => left.data.order - right.data.order)
+  .slice(0, 3);
+
+const featuredLab = (await getCollection("lab"))
+  .filter((entry) => entry.data.featured)
+  .sort((left, right) => left.data.order - right.data.order);
+---
+
+<BaseLayout
+  title="Wei Dai"
+  description="Wei Dai is a statistician and data scientist building research-facing tools, notes, and interactive Gaussian-process explainers."
+>
+  <section class="hero-grid">
+    <div class="panel panel--hero">
+      <p class="eyebrow">Research-oriented data science</p>
+      <h1>Statistics, machine learning, and tools that make modeling assumptions visible.</h1>
+      <p class="lead">
+        I am Wei Dai, a statistician and data scientist with experience in feature selection,
+        mixture models, stochastic simulation optimization, and applied work on electronic health
+        records. This site brings together selected projects, lightweight research notes, and
+        interactive explainers built to clarify difficult ideas.
+      </p>
+      <div class="hero-actions">
+        <a class="button button--primary" href="/projects/">See selected work</a>
+        <a class="button button--ghost" href="/lab/">Explore the lab</a>
+      </div>
+    </div>
+
+    <aside class="panel hero-note" aria-label="Profile highlights">
+      <p class="eyebrow">Current position</p>
+      <h2>Postdoctoral researcher at George Mason University.</h2>
+      <p>
+        PhD in Statistics defended in August 2025. I am especially interested in work that connects
+        statistical rigor with usable software and clear scientific communication.
+      </p>
+
+      <div class="fact-strip">
+        <div class="fact-strip__item">
+          <span class="fact-strip__label">Focus</span>
+          <span>Feature selection, kernel methods, EHR analysis, and simulation optimization.</span>
+        </div>
+        <div class="fact-strip__item">
+          <span class="fact-strip__label">Tooling</span>
+          <span>R, Python, reproducible analysis, and lightweight web explainers for technical ideas.</span>
+        </div>
+        <div class="fact-strip__item">
+          <span class="fact-strip__label">Open to</span>
+          <span>Research, data science, machine learning, and collaborative statistical work.</span>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="section-grid" style="margin-top: 2rem;">
+    <div class="section-heading">
+      <div>
+        <p class="eyebrow">Selected work</p>
+        <h2>Projects anchored in methodological clarity and practical data work.</h2>
+      </div>
+      <p>
+        The project list is intentionally compact: one public package, one applied data artifact,
+        and one durable archive for reusable research materials.
+      </p>
+    </div>
+
+    <div class="card-grid">
+      {
+        featuredProjects.map((project) => (
+          <ProjectCard
+            href={`/projects/${project.slug}/`}
+            title={project.data.title}
+            summary={project.data.summary}
+            tags={project.data.tags}
+            status={project.data.status}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <FigureBlock
+    kicker="Research map"
+    title="Three recurring themes structure the work."
+    description="I tend to return to the same questions across different projects: how assumptions are encoded, how uncertainty is surfaced, and how workflows stay usable once they leave the whiteboard."
+  >
+    <div class="figure-grid">
+      <div class="figure-grid__cell">
+        <span class="figure-grid__metric">01</span>
+        <h3>Model assumptions</h3>
+        <p>
+          Kernel choice, resampling behavior, and selection rules all encode preferences that should
+          be inspectable rather than implicit.
+        </p>
+      </div>
+      <div class="figure-grid__cell">
+        <span class="figure-grid__metric">02</span>
+        <h3>Applied data constraints</h3>
+        <p>
+          EHR and observational settings demand careful preprocessing, explicit limitations, and
+          tools that respect imperfect measurement.
+        </p>
+      </div>
+      <div class="figure-grid__cell">
+        <span class="figure-grid__metric">03</span>
+        <h3>Legible software</h3>
+        <p>
+          Explanatory software should do more than execute an algorithm. It should help others see
+          what the algorithm is assuming and where it can fail.
+        </p>
+      </div>
+    </div>
+  </FigureBlock>
+
+  <section class="split">
+    <div class="content-panel">
+      <p class="eyebrow">Interactive lab</p>
+      <h2>Small demos for building intuition, starting with Gaussian processes.</h2>
+      <p class="lead" style="margin-top: 1rem;">
+        The lab is where I turn abstract modeling ideas into compact visual tools. The first two
+        demos focus on kernels and Gaussian-process posteriors because they reward visual
+        exploration and benefit from direct manipulation.
+      </p>
+      <div class="card-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: 1.4rem;">
+        {
+          featuredLab.map((entry) => (
+            <LabCard
+              href={entry.data.route}
+              title={entry.data.title}
+              summary={entry.data.summary}
+              motivation={entry.data.motivation}
+            />
+          ))
+        }
+      </div>
+    </div>
+
+    <aside class="list-block">
+      <p class="eyebrow">Current focus</p>
+      <h2>What I am exploring now</h2>
+      <ul>
+        <li>Gaussian-process intuition through kernels, priors, and one-dimensional posteriors.</li>
+        <li>Feature-selection workflows that remain stable under perturbation and resampling.</li>
+        <li>Interfaces that make statistical assumptions visible to collaborators and hiring teams.</li>
+      </ul>
+      <div class="split-actions">
+        <a class="button button--ghost" href="/about/">More about me</a>
+      </div>
+    </aside>
+  </section>
+
+  <ContactBand />
+</BaseLayout>

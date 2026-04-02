@@ -1,0 +1,54 @@
+---
+import { getCollection, render } from "astro:content";
+import ContactBand from "../../components/ContactBand.astro";
+import GPPosteriorExplorer from "../../components/GPPosteriorExplorer.astro";
+import KernelPlayground from "../../components/KernelPlayground.astro";
+import PageIntro from "../../components/PageIntro.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const labEntries = await getCollection("lab");
+
+  return labEntries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const DemoComponent = entry.slug === "kernel-playground" ? KernelPlayground : GPPosteriorExplorer;
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.summary}>
+  <PageIntro eyebrow="Interactive lab" title={entry.data.title} dek={entry.data.summary} />
+
+  <section class="content-grid">
+    <article class="content-panel rich-text">
+      <Content />
+      <div class="formula">
+        <strong>Concept:</strong> {entry.data.concept}
+      </div>
+    </article>
+
+    <aside class="detail-sidebar">
+      <section class="content-panel">
+        <dl class="meta-list">
+          <div>
+            <dt>Primary use</dt>
+            <dd>{entry.data.motivation}</dd>
+          </div>
+          <div>
+            <dt>Route</dt>
+            <dd>{entry.data.route}</dd>
+          </div>
+        </dl>
+      </section>
+    </aside>
+  </section>
+
+  <DemoComponent />
+
+  <ContactBand />
+</BaseLayout>

@@ -1,0 +1,63 @@
+---
+import ContactBand from "../components/ContactBand.astro";
+import PageIntro from "../components/PageIntro.astro";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="About"
+  description="About Wei Dai: statistician, data scientist, and builder of research-facing tools and explainers."
+>
+  <PageIntro
+    eyebrow="About"
+    title="A statistician who likes methods, but also likes making them usable."
+    dek="My work has ranged from feature selection and mixture-model thinking to applied collaboration on electronic health records. Across those settings, I care about making assumptions explicit and workflows durable."
+  />
+
+  <section class="bio-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+    <article class="content-panel rich-text">
+      <h2>Background</h2>
+      <p>
+        I completed a PhD in Statistics in August 2025 and currently work as a postdoctoral
+        researcher at George Mason University. My training spans methodological statistics, machine
+        learning, and computational work that needs to survive contact with real data.
+      </p>
+      <p>
+        In practice, that has meant feature-selection research, mixture-model reasoning, stochastic
+        simulation optimization, and applied analysis of electronic health records. I also spend a
+        meaningful amount of time thinking about how technical results are presented, documented,
+        and turned into reusable tools.
+      </p>
+    </article>
+
+    <article class="content-panel rich-text">
+      <h2>What I value</h2>
+      <ul>
+        <li>Methods that remain interpretable once they leave an idealized derivation.</li>
+        <li>Software and analyses that expose assumptions instead of burying them.</li>
+        <li>Collaboration with domain experts where statistical clarity is part of the deliverable.</li>
+      </ul>
+    </article>
+
+    <article class="content-panel rich-text">
+      <h2>Current interests</h2>
+      <p>
+        Right now I am especially interested in Gaussian processes, kernels, model-selection
+        stability, and the design of lightweight interfaces for technical explanation. I follow
+        developments in large language models as a user and builder, but I tend to approach them
+        through a statistical lens.
+      </p>
+    </article>
+
+    <article class="content-panel rich-text">
+      <h2>Links</h2>
+      <ul>
+        <li><a href="/cv/wei-dai-cv.pdf">Curriculum vitae</a></li>
+        <li><a href="https://github.com/wdai0">GitHub profile</a></li>
+        <li><a href="mailto:dwei90bd@gmail.com">dwei90bd@gmail.com</a></li>
+      </ul>
+    </article>
+  </section>
+
+  <ContactBand />
+</BaseLayout>

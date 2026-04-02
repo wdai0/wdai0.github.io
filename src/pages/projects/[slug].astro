@@ -1,0 +1,64 @@
+---
+import { getCollection, render } from "astro:content";
+import ContactBand from "../../components/ContactBand.astro";
+import PageIntro from "../../components/PageIntro.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+
+  return projects.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry }
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+---
+
+<BaseLayout title={entry.data.title} description={entry.data.summary}>
+  <PageIntro eyebrow="Project" title={entry.data.title} dek={entry.data.summary} />
+
+  <section class="content-grid">
+    <article class="content-panel rich-text">
+      <Content />
+    </article>
+
+    <aside class="detail-sidebar">
+      <section class="content-panel">
+        <dl class="meta-list">
+          <div>
+            <dt>Status</dt>
+            <dd>{entry.data.status}</dd>
+          </div>
+          <div>
+            <dt>Window</dt>
+            <dd>{entry.data.year}</dd>
+          </div>
+          <div>
+            <dt>Tags</dt>
+            <dd>{entry.data.tags.join(" · ")}</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="content-panel">
+        <div class="button-row">
+          {entry.data.externalUrl && (
+            <a class="button button--primary" href={entry.data.externalUrl}>
+              Open material
+            </a>
+          )}
+          {entry.data.repoUrl && (
+            <a class="button button--ghost" href={entry.data.repoUrl}>
+              View repository
+            </a>
+          )}
+        </div>
+      </section>
+    </aside>
+  </section>
+
+  <ContactBand />
+</BaseLayout>

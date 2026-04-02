@@ -1,0 +1,38 @@
+---
+import { getCollection } from "astro:content";
+import ContactBand from "../../components/ContactBand.astro";
+import PageIntro from "../../components/PageIntro.astro";
+import ProjectCard from "../../components/ProjectCard.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const projects = (await getCollection("projects")).sort(
+  (left, right) => left.data.order - right.data.order
+);
+---
+
+<BaseLayout
+  title="Projects"
+  description="Selected projects by Wei Dai spanning feature selection, applied EHR data work, and reusable research materials."
+>
+  <PageIntro
+    eyebrow="Selected work"
+    title="Projects"
+    dek="A curated set of public-facing projects and materials. The emphasis here is not breadth for its own sake, but artifacts that say something concrete about how I work."
+  />
+
+  <section class="card-grid">
+    {
+      projects.map((project) => (
+        <ProjectCard
+          href={`/projects/${project.slug}/`}
+          title={project.data.title}
+          summary={project.data.summary}
+          tags={project.data.tags}
+          status={project.data.status}
+        />
+      ))
+    }
+  </section>
+
+  <ContactBand />
+</BaseLayout>

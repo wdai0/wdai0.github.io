@@ -1,0 +1,51 @@
+---
+import { getCollection } from "astro:content";
+import ContactBand from "../../components/ContactBand.astro";
+import LabCard from "../../components/LabCard.astro";
+import PageIntro from "../../components/PageIntro.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const labEntries = (await getCollection("lab")).sort((left, right) => left.data.order - right.data.order);
+---
+
+<BaseLayout
+  title="Lab"
+  description="Interactive statistical explainers by Wei Dai, starting with Gaussian-process kernels and posterior intuition."
+>
+  <PageIntro
+    eyebrow="Interactive explainer set"
+    title="Lab"
+    dek="Small, deliberate tools for developing intuition. The first release focuses on Gaussian processes because kernels and posteriors become much easier to reason about once you can manipulate them directly."
+  />
+
+  <section class="split">
+    <div class="card-grid" style="grid-template-columns: repeat(2, minmax(0, 1fr));">
+      {
+        labEntries.map((entry) => (
+          <LabCard
+            href={entry.data.route}
+            title={entry.data.title}
+            summary={entry.data.summary}
+            motivation={entry.data.motivation}
+          />
+        ))
+      }
+    </div>
+
+    <aside class="list-block">
+      <p class="eyebrow">Why this page exists</p>
+      <h2>Utility over ornament.</h2>
+      <p>
+        The goal is not to recreate a textbook. It is to create focused tools that make one concept
+        easier to feel and debug.
+      </p>
+      <ul>
+        <li>Use the kernel tool to compare prior geometry before conditioning on data.</li>
+        <li>Use the posterior tool to see how data placement and noise reshape uncertainty.</li>
+        <li>Expect more demos here only if they help explain real modeling decisions.</li>
+      </ul>
+    </aside>
+  </section>
+
+  <ContactBand />
+</BaseLayout>
