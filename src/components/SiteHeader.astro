@@ -1,5 +1,6 @@
 ---
 const pathname = Astro.url.pathname;
+const subtitle = "The limits of my tokens mean the limits of my world.";
 
 const navItems = [
   { href: "/", label: "Home" },
@@ -14,8 +15,8 @@ const navItems = [
     <a class="site-header__mark" href="/">
       <span class="site-header__monogram">WD</span>
       <span class="site-header__identity">
-        <span>Wei Dai</span>
-        <span>Statistics · ML · Scientific Computing</span>
+        <span class="site-header__title">Wei Dai</span>
+        <span class="site-header__subtitle">{subtitle}</span>
       </span>
     </a>
 
