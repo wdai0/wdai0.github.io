@@ -1,0 +1,15 @@
+{
+  "denylist": [],
+  "overrides": {
+    "wdai0/References": {
+      "title": "References and Slide Archive",
+      "summary": "A public repository for reading notes, slide materials, and small teaching artifacts across statistics and machine learning.",
+      "tags": [
+        "reading notes",
+        "slide decks",
+        "research workflow"
+      ],
+      "order": 10
+    }
+  }
+}

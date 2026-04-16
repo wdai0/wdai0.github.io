@@ -1,0 +1,109 @@
+---
+import ContactBand from "../../components/ContactBand.astro";
+import PageIntro from "../../components/PageIntro.astro";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import slidesManifest from "../../data/slides.generated.json";
+
+const slides = Array.isArray(slidesManifest.slides) ? slidesManifest.slides : [];
+const generatedAt = slidesManifest.generatedAt
+  ? new Intl.DateTimeFormat("en-US", {
+      dateStyle: "long",
+      timeStyle: "short",
+      timeZone: "America/New_York"
+    }).format(new Date(slidesManifest.generatedAt))
+  : null;
+---
+
+<BaseLayout
+  title="Slides"
+  description="GitHub Pages slide sites discovered across Wei Dai's repositories."
+>
+  <PageIntro
+    eyebrow="Talks and decks"
+    title="Slides"
+    dek="A curated index of GitHub Pages slide sites discovered across my repositories. Template repositories are excluded automatically, and false positives can be suppressed from this site without editing the source repos."
+  >
+    {
+      generatedAt && (
+        <p class="page-intro__meta">Last indexed {generatedAt} in America/New_York.</p>
+      )
+    }
+  </PageIntro>
+
+  <section class="split slides-layout">
+    <div class="slides-layout__main">
+      <div class="content-panel rich-text">
+        <p class="slides-layout__summary">
+          {slides.length === 0
+            ? "No slide sites are indexed yet. The page will populate after the first successful manifest refresh."
+            : `${slides.length} slide site${slides.length === 1 ? "" : "s"} currently indexed across wdai0-owned repositories.`}
+        </p>
+      </div>
+
+      {
+        slides.length === 0 ? (
+          <section class="content-panel empty-state rich-text">
+            <h2>Waiting for the first refresh</h2>
+            <p>
+              The generator writes <code>src/data/slides.generated.json</code> during the scheduled
+              workflow. Until that runs with a configured <code>SLIDES_INDEX_TOKEN</code>, this page
+              stays intentionally empty rather than inventing entries.
+            </p>
+          </section>
+        ) : (
+          <section class="card-grid slides-grid">
+            {slides.map((slide) => (
+              <article class="card slide-card">
+                <div class="card__meta">
+                  <span class="pill">{slide.visibility === "private" ? "Private repo Pages" : "Public repo Pages"}</span>
+                </div>
+                <div class="slide-card__meta">
+                  <span class="slide-card__repo">{slide.repo}</span>
+                  {slide.date && <span>{slide.date}</span>}
+                </div>
+                <h3 class="card__title">
+                  <a href={slide.slidesUrl} rel="noreferrer" target="_blank">
+                    {slide.title}
+                  </a>
+                </h3>
+                <p class="card__summary">{slide.summary}</p>
+                {slide.tags && slide.tags.length > 0 && (
+                  <div class="tag-row">
+                    {slide.tags.map((tag) => <span class="tag">{tag}</span>)}
+                  </div>
+                )}
+                <div class="slide-card__actions">
+                  <a class="button button--primary" href={slide.slidesUrl} rel="noreferrer" target="_blank">
+                    View slides
+                  </a>
+                  <a class="button button--ghost" href={slide.repoUrl} rel="noreferrer" target="_blank">
+                    Repository
+                  </a>
+                </div>
+              </article>
+            ))}
+          </section>
+        )
+      }
+    </div>
+
+    <aside class="list-block slides-policy">
+      <div>
+        <p class="eyebrow">Policy</p>
+        <h2>Discovery rules</h2>
+      </div>
+      <ul>
+        <li>Scan repositories owned by <code>wdai0</code>, including private repositories.</li>
+        <li>Exclude the personal-site repo and any repository marked as a GitHub template.</li>
+        <li>Suppress false positives through a local denylist and per-repo overrides in this site.</li>
+        <li>Refresh every day at 4:00 AM in <code>America/New_York</code>.</li>
+      </ul>
+      <p>
+        This page indexes existing GitHub Pages deployments. It does not copy slide PDFs or modify
+        the source repositories.
+      </p>
+    </aside>
+  </section>
+
+  <ContactBand />
+</BaseLayout>

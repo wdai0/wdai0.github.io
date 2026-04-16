@@ -1,0 +1,62 @@
+name: Update Slides Index
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4 * * *"
+      timezone: "America/New_York"
+
+permissions:
+  contents: write
+
+jobs:
+  update-slides-index:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run generator smoke tests
+        run: npm run test:slides
+
+      - name: Generate slides manifest
+        env:
+          GITHUB_OWNER: wdai0
+          SLIDES_INDEX_TOKEN: ${{ secrets.SLIDES_INDEX_TOKEN }}
+        run: npm run update-slides
+
+      - name: Build Astro site
+        run: npm run build
+
+      - name: Sync dist to publishable root
+        run: npm run sync-dist
+
+      - name: Detect changes
+        id: changes
+        run: |
+          if git diff --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Commit refreshed output
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -m "chore(slides): refresh slides index"
+          git push
