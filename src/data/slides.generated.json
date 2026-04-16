@@ -1,0 +1,56 @@
+{
+  "generatedAt": "2026-04-16T20:28:07.853Z",
+  "owner": "wdai0",
+  "slides": [
+    {
+      "repo": "wdai0/References",
+      "repoUrl": "https://github.com/wdai0/References",
+      "slidesUrl": "https://wdai0.github.io/References/",
+      "title": "References and Slide Archive",
+      "summary": "A public repository for reading notes, slide materials, and small teaching artifacts across statistics and machine learning.",
+      "visibility": "public",
+      "updatedAt": "2024-02-21T20:57:52Z",
+      "tags": [
+        "reading notes",
+        "slide decks",
+        "research workflow"
+      ]
+    },
+    {
+      "repo": "wdai0/osol-current",
+      "repoUrl": "https://github.com/wdai0/osol-current",
+      "slidesUrl": "https://wdai0.github.io/osol-current/",
+      "title": "osol-current",
+      "summary": "slides",
+      "visibility": "private",
+      "updatedAt": "2026-03-19T15:25:12Z"
+    },
+    {
+      "repo": "wdai0/SWA-NN",
+      "repoUrl": "https://github.com/wdai0/SWA-NN",
+      "slidesUrl": "https://wdai0.github.io/SWA-NN/",
+      "title": "SWA-NN",
+      "summary": "Explore new ideas for SWA",
+      "visibility": "private",
+      "updatedAt": "2026-02-19T20:30:56Z"
+    },
+    {
+      "repo": "wdai0/weekly-group-meetings",
+      "repoUrl": "https://github.com/wdai0/weekly-group-meetings",
+      "slidesUrl": "https://wdai0.github.io/weekly-group-meetings/",
+      "title": "weekly-group-meetings",
+      "summary": "GitHub Pages site discovered from wdai0/weekly-group-meetings.",
+      "visibility": "private",
+      "updatedAt": "2026-02-19T17:21:47Z"
+    },
+    {
+      "repo": "wdai0/swa-hetero",
+      "repoUrl": "https://github.com/wdai0/swa-hetero",
+      "slidesUrl": "https://wdai0.github.io/swa-hetero/",
+      "title": "swa-hetero",
+      "summary": "Explore ideas and learn from others",
+      "visibility": "private",
+      "updatedAt": "2026-02-04T19:58:56Z"
+    }
+  ]
+}
