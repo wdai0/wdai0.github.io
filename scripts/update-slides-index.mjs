@@ -138,9 +138,40 @@ export async function collectSlidesManifest({ owner, repos, config, lookupPagesS
   };
 }
 
+function toStableManifest(manifest = {}) {
+  return {
+    owner: manifest.owner ?? null,
+    slides: Array.isArray(manifest.slides) ? manifest.slides : []
+  };
+}
+
+export function stabilizeManifest(previousManifest, nextManifest) {
+  if (!previousManifest) {
+    return { changed: true, manifest: nextManifest };
+  }
+
+  if (JSON.stringify(toStableManifest(previousManifest)) === JSON.stringify(toStableManifest(nextManifest))) {
+    return { changed: false, manifest: previousManifest };
+  }
+
+  return { changed: true, manifest: nextManifest };
+}
+
 async function readJson(filePath) {
   const contents = await fs.readFile(filePath, "utf8");
   return JSON.parse(contents);
+}
+
+async function readJsonIfExists(filePath) {
+  try {
+    return await readJson(filePath);
+  } catch (error) {
+    if (error?.code === "ENOENT") {
+      return null;
+    }
+
+    throw error;
+  }
 }
 
 async function writeJson(filePath, payload) {
@@ -200,7 +231,7 @@ async function fetchPagesSite(owner, repoName, token) {
   return fetchJson(`${API_BASE_URL}/repos/${owner}/${repoName}/pages`, token, { allow404: true });
 }
 
-export async function generateSlidesIndex({
+async function generateSlidesIndexResult({
   owner = DEFAULT_OWNER,
   token = process.env.SLIDES_INDEX_TOKEN,
   configPath = DEFAULT_CONFIG_PATH,
@@ -214,21 +245,35 @@ export async function generateSlidesIndex({
 
   const config = normalizeConfig(await readJson(configPath));
   const repos = await listOwnedRepos(owner, token);
-  const manifest = await collectSlidesManifest({
+  const previousManifest = await readJsonIfExists(outputPath);
+  const nextManifest = await collectSlidesManifest({
     owner,
     repos,
     config,
     lookupPagesSite: (repo) => fetchPagesSite(owner, repo.name, token)
   });
+  const result = stabilizeManifest(previousManifest, nextManifest);
 
-  await writeJson(outputPath, manifest);
+  if (result.changed) {
+    await writeJson(outputPath, result.manifest);
+  }
+
+  return result;
+}
+
+export async function generateSlidesIndex(options = {}) {
+  const { manifest } = await generateSlidesIndexResult(options);
   return manifest;
 }
 
 async function main() {
-  const manifest = await generateSlidesIndex();
+  const { manifest, changed } = await generateSlidesIndexResult();
+  const relativeOutputPath = path.relative(repoRoot, DEFAULT_OUTPUT_PATH);
+
   console.log(
-    `Wrote ${manifest.slides.length} slide entries to ${path.relative(repoRoot, DEFAULT_OUTPUT_PATH)}.`
+    changed
+      ? `Wrote ${manifest.slides.length} slide entries to ${relativeOutputPath}.`
+      : `Slides manifest unchanged; kept existing ${relativeOutputPath}.`
   );
 }
 

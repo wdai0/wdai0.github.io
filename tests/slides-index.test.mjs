@@ -4,6 +4,7 @@ import test from "node:test";
 import {
   collectSlidesManifest,
   normalizeConfig,
+  stabilizeManifest,
   sortSlides
 } from "../scripts/update-slides-index.mjs";
 
@@ -105,6 +106,74 @@ test("collectSlidesManifest applies overrides before writing the final manifest"
       tags: ["reading notes", "slide decks"]
     }
   ]);
+});
+
+test("stabilizeManifest preserves the existing manifest when only generatedAt changes", () => {
+  const previousManifest = {
+    generatedAt: "2026-04-19T08:19:18.443Z",
+    owner: "wdai0",
+    slides: [
+      {
+        repo: "wdai0/references",
+        repoUrl: "https://github.com/wdai0/references",
+        slidesUrl: "https://wdai0.github.io/references/",
+        title: "References and Slide Archive",
+        summary: "Override summary",
+        visibility: "public",
+        updatedAt: "2026-04-05T11:30:00.000Z"
+      }
+    ]
+  };
+  const nextManifest = {
+    ...previousManifest,
+    generatedAt: "2026-04-20T08:44:02.356Z"
+  };
+
+  const result = stabilizeManifest(previousManifest, nextManifest);
+
+  assert.equal(result.changed, false);
+  assert.equal(result.manifest.generatedAt, previousManifest.generatedAt);
+  assert.deepEqual(result.manifest, previousManifest);
+});
+
+test("stabilizeManifest marks real slide changes as updates", () => {
+  const previousManifest = {
+    generatedAt: "2026-04-19T08:19:18.443Z",
+    owner: "wdai0",
+    slides: [
+      {
+        repo: "wdai0/references",
+        repoUrl: "https://github.com/wdai0/references",
+        slidesUrl: "https://wdai0.github.io/references/",
+        title: "References and Slide Archive",
+        summary: "Override summary",
+        visibility: "public",
+        updatedAt: "2026-04-05T11:30:00.000Z"
+      }
+    ]
+  };
+  const nextManifest = {
+    generatedAt: "2026-04-20T08:44:02.356Z",
+    owner: "wdai0",
+    slides: [
+      ...previousManifest.slides,
+      {
+        repo: "wdai0/new-talk",
+        repoUrl: "https://github.com/wdai0/new-talk",
+        slidesUrl: "https://wdai0.github.io/new-talk/",
+        title: "New Talk",
+        summary: "A newly published deck.",
+        visibility: "public",
+        updatedAt: "2026-04-20T08:44:02.356Z"
+      }
+    ]
+  };
+
+  const result = stabilizeManifest(previousManifest, nextManifest);
+
+  assert.equal(result.changed, true);
+  assert.equal(result.manifest.generatedAt, nextManifest.generatedAt);
+  assert.deepEqual(result.manifest, nextManifest);
 });
 
 test("sortSlides is deterministic across order, date, updatedAt, and repo name", () => {
