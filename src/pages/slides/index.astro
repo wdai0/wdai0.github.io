@@ -4,7 +4,19 @@ import PageIntro from "../../components/PageIntro.astro";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import slidesManifest from "../../data/slides.generated.json";
 
-const slides = Array.isArray(slidesManifest.slides) ? slidesManifest.slides : [];
+type SlideEntry = {
+  repo: string;
+  repoUrl: string;
+  slidesUrl: string;
+  title: string;
+  summary: string;
+  visibility: string;
+  updatedAt?: string | null;
+  date?: string;
+  tags?: string[];
+};
+
+const slides = Array.isArray(slidesManifest.slides) ? (slidesManifest.slides as SlideEntry[]) : [];
 ---
 
 <BaseLayout
