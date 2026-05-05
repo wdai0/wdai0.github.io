@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-20T08:44:02.356Z",
+  "generatedAt": "2026-05-05T08:43:32.275Z",
   "owner": "wdai0",
   "slides": [
     {
@@ -15,6 +15,15 @@
         "slide decks",
         "research workflow"
       ]
+    },
+    {
+      "repo": "wdai0/osol-arxiv",
+      "repoUrl": "https://github.com/wdai0/osol-arxiv",
+      "slidesUrl": "https://wdai0.github.io/osol-arxiv/",
+      "title": "osol-arxiv",
+      "summary": "GitHub Pages site discovered from wdai0/osol-arxiv.",
+      "visibility": "private",
+      "updatedAt": "2026-05-05T00:54:59Z"
     },
     {
       "repo": "wdai0/osol-current",
