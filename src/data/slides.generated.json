@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-05T08:43:32.275Z",
+  "generatedAt": "2026-05-07T08:53:28.889Z",
   "owner": "wdai0",
   "slides": [
     {
@@ -15,6 +15,15 @@
         "slide decks",
         "research workflow"
       ]
+    },
+    {
+      "repo": "wdai0/STAI-X-paper-DACr",
+      "repoUrl": "https://github.com/wdai0/STAI-X-paper-DACr",
+      "slidesUrl": "https://wdai0.github.io/STAI-X-paper-DACr/",
+      "title": "STAI-X-paper-DACr",
+      "summary": "GitHub Pages site discovered from wdai0/STAI-X-paper-DACr.",
+      "visibility": "private",
+      "updatedAt": "2026-05-06T19:12:04Z"
     },
     {
       "repo": "wdai0/osol-arxiv",
