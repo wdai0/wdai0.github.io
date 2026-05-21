@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-12T08:57:02.128Z",
+  "generatedAt": "2026-05-21T09:05:41.149Z",
   "owner": "wdai0",
   "slides": [
     {
@@ -17,22 +17,13 @@
       ]
     },
     {
-      "repo": "wdai0/STAI-X-paper-DACr",
-      "repoUrl": "https://github.com/wdai0/STAI-X-paper-DACr",
-      "slidesUrl": "https://wdai0.github.io/STAI-X-paper-DACr/",
-      "title": "STAI-X-paper-DACr",
-      "summary": "GitHub Pages site discovered from wdai0/STAI-X-paper-DACr.",
-      "visibility": "private",
-      "updatedAt": "2026-05-11T19:20:45Z"
-    },
-    {
       "repo": "wdai0/osol-arxiv",
       "repoUrl": "https://github.com/wdai0/osol-arxiv",
       "slidesUrl": "https://wdai0.github.io/osol-arxiv/",
       "title": "osol-arxiv",
       "summary": "GitHub Pages site discovered from wdai0/osol-arxiv.",
       "visibility": "private",
-      "updatedAt": "2026-05-05T00:54:59Z"
+      "updatedAt": "2026-05-20T19:54:17Z"
     },
     {
       "repo": "wdai0/osol-current",
@@ -41,7 +32,16 @@
       "title": "osol-current",
       "summary": "slides",
       "visibility": "private",
-      "updatedAt": "2026-03-19T15:25:12Z"
+      "updatedAt": "2026-05-20T14:10:21Z"
+    },
+    {
+      "repo": "wdai0/STAI-X-paper-DACr",
+      "repoUrl": "https://github.com/wdai0/STAI-X-paper-DACr",
+      "slidesUrl": "https://wdai0.github.io/STAI-X-paper-DACr/",
+      "title": "STAI-X-paper-DACr",
+      "summary": "GitHub Pages site discovered from wdai0/STAI-X-paper-DACr.",
+      "visibility": "private",
+      "updatedAt": "2026-05-11T19:20:45Z"
     },
     {
       "repo": "wdai0/SWA-NN",
