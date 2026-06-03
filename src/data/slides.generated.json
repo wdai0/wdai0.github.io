@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-02T19:07:43.959Z",
+  "generatedAt": "2026-06-03T09:34:31.312Z",
   "owner": "wdai0",
   "slides": [
     {
@@ -15,15 +15,6 @@
         "slide decks",
         "research workflow"
       ]
-    },
-    {
-      "repo": "wdai0/OSOL-IWSM-slides",
-      "repoUrl": "https://github.com/wdai0/OSOL-IWSM-slides",
-      "slidesUrl": "https://wdai0.github.io/OSOL-IWSM-slides/",
-      "title": "OSOL-IWSM-slides",
-      "summary": "GitHub Pages site discovered from wdai0/OSOL-IWSM-slides.",
-      "visibility": "private",
-      "updatedAt": "2026-06-02T18:51:48Z"
     },
     {
       "repo": "wdai0/osol-arxiv",
